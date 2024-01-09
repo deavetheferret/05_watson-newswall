@@ -1,0 +1,6 @@
+.parcel-cache
+dist
+node_modules
+src/img
+src/fonts
+.DS-Store
