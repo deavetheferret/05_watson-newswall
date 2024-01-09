@@ -2,7 +2,54 @@
 // css variables
 // ==================================== */
 
-:root {
+$fs-h2-md: 35.83px;
+$fs-h3-md: 29.86px;
+$fs-h4-md: 24.88px;
+$fs-tag-md: 14.4px;
+$fs-p-md: 16px;
+$fs-h2-sm: calc($fs-h2-md - 4px);
+$fs-h3-sm: calc($fs-h3-md - 4px);
+$fs-h4-sm: calc($fs-h4-md - 4px);
+$fs-tag-sm: calc($fs-tag-md - 4px);
+$fs-p-sm: calc($fs-p-md - 4px);
+
+$color-pink: #f40f97;
+$color-yellow: #f4cf0f;
+$color-red: #f40f0f;
+$color-blue: #00c1f6;
+$color-turquoise: #0ad8cc;
+$color-orange: #f47d0f;
+$color-green: #7cd401;
+$color-purple: #740ff4;
+
+@mixin text-base($wght: 400, $opsz: 0) {
+  font-family: "sole-serif-small-variable", sans-serif;
+  font-variation-settings: "opsz" $opsz, "wght" $wght;
+  line-height: 18px;
+}
+@mixin text-base-it($wght: 400, $opsz: 0) {
+  @include text-base(400, 0);
+  font-style: italic;
+}
+@mixin title-base($wght: 800) {
+  font-family: "cofo-gothic-variable", sans-serif;
+  font-variation-settings: "wght" $wght;
+  line-height: normal;
+}
+
+@mixin text-tag {
+  @include title-base(600);
+  font-size: $fs-tag-md;
+}
+
+@mixin tag($color) {
+  @include text-tag;
+  color: #fff;
+  display: inline-flex;
+  padding: 4px 10px 2px;
+  align-items: center;
+  gap: 10px;
+  background-color: $color;
 }
 
 /* ====================================
@@ -13,10 +60,17 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  &.none {
+    display: none !important;
+  }
+  &::selection {
+    color: #000;
+    background-color: #c4007a;
+  }
 }
 
 html {
-  font-size: 16px;
+  font-size: $fs-p-md;
 }
 
 body {
@@ -26,10 +80,15 @@ body {
 
   font-size: 1rem;
   line-height: 1.25;
+  background-color: #020202 !important;
 }
 
 a {
   color: inherit;
+}
+
+p {
+  margin-bottom: 0;
 }
 
 img,
@@ -42,3 +101,81 @@ video {
 /* ====================================
 // base rules
 // ==================================== */
+
+header {
+  padding-top: 20px;
+  position: sticky;
+  top: 0;
+  background-color: #000000aa;
+  z-index: 100000000000;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 10px#000000aa;
+  .col-12 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      [class^="bar-"] {
+        height: 2px;
+        width: 36px;
+        background-color: #fff;
+      }
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include title-base(800);
+}
+
+h2 {
+  font-size: $fs-h2-md;
+}
+h3 {
+  font-size: $fs-h3-md;
+}
+h4 {
+  font-size: $fs-h4-md;
+}
+p {
+  font-size: $fs-p-md;
+}
+
+@media screen and (max-width: 768px) {
+  // $fs-h2: calc($fs-h2 - 4px);
+  // $fs-h3: calc($fs-h3 - 4px);
+  // $fs-h4: calc($fs-h4 - 4px);
+  // $fs-tag: calc($fs-tag - 4px);
+  // $fs-p: calc($fs-p - 4px);
+  h2 {
+    font-size: $fs-h2-sm;
+  }
+  h3 {
+    font-size: $fs-h3-sm;
+  }
+  h4 {
+    font-size: $fs-h4-sm;
+  }
+  p {
+    font-size: $fs-p-sm;
+  }
+
+  header {
+    height: 82px;
+    svg {
+      width: 50%;
+      margin-left: 20px;
+    }
+    .menu {
+      margin-right: 20px;
+    }
+  }
+}

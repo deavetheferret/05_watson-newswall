@@ -1,7 +1,7 @@
 {
-  "name": "eikon-parcel-starter",
-  "version": "1.0.0",
-  "description": "Web projects starterkit for eikon studenrs",
+  "name": "Watson newswall",
+  "version": "1.1.0",
+  "description": "A rebranding of the newswall Watson",
   "scripts": {
     "clean:output": "rimraf dist",
     "clean:cache": "rimraf .parcel-cache",
@@ -22,7 +22,7 @@
       "(.*)\\.(woff|woff2?)": "fonts/$1.$2",
       "(.*)\\.(mp3)": "audio/$1.$2",
       "(.*)\\.(mp4|ogg|webm)": "video/$1.$2",
-      "(.*)\\.(svg|png|gif|jpg|webp)": "img/$1{.hash}.$2"
+      "(.*)\\.(svg|png|gif|jpg|jpeg|webp)": "img/$1.{hash}.$2"
     },
     "silent": true,
     "development": {
@@ -30,10 +30,16 @@
     }
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.10.3",
     "parcel": "^2.10.3",
     "parcel-namer-rewrite": "^2.10.3-rc.2",
     "posthtml-include": "^1.7.4",
     "rimraf": "^3.0.2",
-    "sass": "^1.69.5"
+    "sass": "^1.69.5",
+    "sharp": "^0.31.3"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "posthtml-extend": "^0.6.5"
   }
 }
